@@ -13,7 +13,7 @@ package net.heteroclinic.lightjsd;
  */
 /*
  * TODO Beta1.0 20140111
- * - TODO Start a new git repo for Lightjsd
+ * - TO-DO Start a new git repo for Lightjsd/20140111
  * - TODO Change Maven pom
  * - TODO Add Unit test
  * -- TODO 1. Locate a file as resource in Eclipse IDE
@@ -42,6 +42,7 @@ package net.heteroclinic.lightjsd;
 public class Portal {
 
 	public static void main(String[] args) {
+		System.out.println("Hello!");
 
 	}
 
