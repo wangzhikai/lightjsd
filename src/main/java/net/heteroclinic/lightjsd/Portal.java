@@ -1,4 +1,7 @@
 package net.heteroclinic.lightjsd;
+
+import java.net.URL;
+
 /*
 * Copyright (c) 2015, Zhikai Wang/www.heteroclinic.net. All rights reserved.
 * Science and technology promotion license applied (third party licenses automatically cascaded).
@@ -10,16 +13,30 @@ package net.heteroclinic.lightjsd;
 /**
  * This class is the entry point of Lightjsd. Also keeps the development log.
  * @author Zhikai Wang / www.heteroclinic.net
+ * 
+ * Notes:
+ * 1. Resource files: for example, Java key store, .properties should be in relative path to the jar executing directory.
+ * They should be in contained in the jar file, so they can be variable. Each time you deploy a new instance of 
+ * a server, just change the keystore, property file.
+ * 2. As up to date 20150120, any file in src/main/resources is automatically built to the root of the jar after 
+ * `mvn package'. unzip can be used to show jar content.
+ * 
  */
 /*
  * TODO Beta1.0 20140111
  * - TO-DO Start a new git repo for Lightjsd/20140111
- * - TODO Change Maven pom
- * - TODO Add Unit test
- * -- TODO 1. Locate a file as resource in Eclipse IDE
- * -- TODO 2. Locate a file as resource as in jar
+ * - TO-DO Change Maven pom/20140111
+ * - TO-DO test public URL getResource(String name) in Eclipse IDE
+ * 		this.getClass().getClassLoader().getResource(name);
+	- TO-DO test this.getClass().getClassLoader().getResources(name)) in Eclipse IDE	; 
+ * 
+ * - TODO Test in Eclipse with Run as Java application
+ * 
+ * -- TODO 1. Locate a file in Eclipse IDE
+ * -- TODO 2. Locate a file as resource as in jar, this has to be done in console ie. java -jar some.jar.
  * -- TODO 3. Locate a file with the path specified in .properties etc
  * -- TODO 4. Can the file specified in .properties be copied to target automatically?
+ * - TODO
  * - TODO Integrate Sun httpd
  * - TODO Integrate Sun httpd with ssl/tsl
  * -- TODO Including properly locating the keystore
@@ -43,7 +60,6 @@ public class Portal {
 
 	public static void main(String[] args) {
 		System.out.println("Hello!");
-
 	}
 
 }
