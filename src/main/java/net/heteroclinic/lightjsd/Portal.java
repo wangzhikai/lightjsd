@@ -1,6 +1,9 @@
 package net.heteroclinic.lightjsd;
 
+import java.io.IOException;
 import java.net.URL;
+
+import net.heteroclinic.lightjsd.examples.ExampleGetResources;
 
 /*
 * Copyright (c) 2015, Zhikai Wang/www.heteroclinic.net. All rights reserved.
@@ -24,12 +27,22 @@ import java.net.URL;
  */
 /*
  * TODO Beta1.0 20140111
- * - TO-DO Start a new git repo for Lightjsd/20140111
- * - TO-DO Change Maven pom/20140111
- * - TO-DO test public URL getResource(String name) in Eclipse IDE
+ * - TO-DO 1. Start a new git repo for Lightjsd/20140111
+ * - TO-DO 2. Change Maven pom/20140111
+ * - TO-DO 3. test public URL getResource(String name) in Eclipse IDE
  * 		this.getClass().getClassLoader().getResource(name);
-	- TO-DO test this.getClass().getClassLoader().getResources(name)) in Eclipse IDE	; 
+ * -- TO-DO 4. test this.getClass().getClassLoader().getResources(name)) in Eclipse IDE; 
+ *   See file ExampleResourceFinder
+ * - TO-DO 5. Test getResources in jar, add the following in Portal.main
+ 		try {
+			ExampleGetResources.main(new String [] {});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+ * - TODO 6. Add unit test for getRources, including get resource content
  * 
+ * 
+
  * - TODO Test in Eclipse with Run as Java application
  * 
  * -- TODO 1. Locate a file in Eclipse IDE
@@ -60,6 +73,9 @@ public class Portal {
 
 	public static void main(String[] args) {
 		System.out.println("Hello!");
+		
+
+		
 	}
 
 }

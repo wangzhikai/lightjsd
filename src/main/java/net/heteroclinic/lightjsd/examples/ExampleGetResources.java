@@ -40,5 +40,20 @@ public class ExampleGetResources {
 		}
 //		file:/home/zhikai/Desktop/workspace/lightjsd/target/classes/sub1/res2
 	}
+	
+	/*
+[zhikai@asus-zk lightjsd]$ java -jar target/lightjsd.jar
+Hello!
+jar:file:/home/zhikai/Desktop/workspace/lightjsd/target/lightjsd.jar!/res1
+null
+jar:file:/home/zhikai/Desktop/workspace/lightjsd/target/lightjsd.jar!/res3
+sun.misc.CompoundEnumeration@3a71f4dd
+sun.misc.CompoundEnumeration@7adf9f5f
+sun.misc.CompoundEnumeration@85ede7b
+jar:file:/home/zhikai/Desktop/workspace/lightjsd/target/lightjsd.jar!/res1
+jar:file:/home/zhikai/Desktop/workspace/lightjsd/target/lightjsd.jar!/res3
+jar:file:/home/zhikai/Desktop/workspace/lightjsd/target/lightjsd.jar!/sub1/res2
+
+	 */
 
 }
