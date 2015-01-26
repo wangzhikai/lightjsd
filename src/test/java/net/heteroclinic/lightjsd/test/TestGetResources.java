@@ -30,6 +30,15 @@ file:/home/zhikai/Desktop/workspace/lightjsd/target/classes/res1
 null
 file:/home/zhikai/Desktop/workspace/lightjsd/target/classes/res3
 		 */
+		/* In Eclipse IDE/class run as Maven test
+file:/home/zhikai/Desktop/workspace/lightjsd/target/classes/res1
+null
+file:/home/zhikai/Desktop/workspace/lightjsd/target/classes/res3
+		 */
+	}
+	@Test 
+	public void testCallMainGetResourceURL () {
+		
 	}
 
 }

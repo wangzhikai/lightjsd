@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import net.heteroclinic.lightjsd.examples.ExampleGetResources;
+import net.heteroclinic.lightjsd.examples.ExampleGetResourcesContent;
 
 /*
 * Copyright (c) 2015, Zhikai Wang/www.heteroclinic.net. All rights reserved.
@@ -39,11 +40,17 @@ import net.heteroclinic.lightjsd.examples.ExampleGetResources;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
- * - TODO 6. Add unit test for getRources, including get resource content
- * -- change junit 3.8.1 to 4.11
+ * - TO-DO 6. Add unit test for getRources, including get resource content
+ * -- change junit 3.8.1 to 4.11, otherwise `mvn test' can not find org.junit
+ * -- `mvn clean package -DskipTests' OK
+ * -- unfortunately, `mvn test' can not be used to detect jar resource. 
+ * Note TO-DO 5 and TO-DO 6 are not the same thing.
+ * - TODO 7. Get the content of resources
+ * -- DONE ExampleGetResourcesContent in IDE
+ * -- DONE Test in jar
+ * -- unit test
  * 
  * 
-
  * - TODO Test in Eclipse with Run as Java application
  * 
  * -- TODO 1. Locate a file in Eclipse IDE
@@ -69,11 +76,13 @@ import net.heteroclinic.lightjsd.examples.ExampleGetResources;
  * -- TODO Ssl support
  * - TODO Gradle service test
  * -- TODO SSL REST test
+ * -- TODO 88 unfortunately, `mvn test' can not be used to detect jar resource.
  */
 public class Portal {
 
 	public static void main(String[] args) {
 		System.out.println("Hello!");
+		new ExampleGetResourcesContent().readContentFromResource("res1");
 		
 
 		
