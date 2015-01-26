@@ -40,6 +40,7 @@ import net.heteroclinic.lightjsd.examples.ExampleGetResources;
 			e.printStackTrace();
 		}
  * - TODO 6. Add unit test for getRources, including get resource content
+ * -- change junit 3.8.1 to 4.11
  * 
  * 
 
