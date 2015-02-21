@@ -1,6 +1,5 @@
 package net.heteroclinic.lightjsd.examples;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
 

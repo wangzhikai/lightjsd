@@ -1,9 +1,5 @@
 package net.heteroclinic.lightjsd.examples;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.net.URL;
-
 public class ExampleResourceFinder {
 	public boolean findAFile (String fn) {
 		String keyfn = ClassLoader.getSystemResource(fn)

@@ -44,7 +44,9 @@ package net.heteroclinic.lightjsd;
  * 
  * -- DONE Test in jar
  * -- unit test
- * - TODO Task
+ * - TODO 8. Task Class
+ * -- TODO Unit test requestedStop
+ * -- TODO Unit test exceptionStop/otherStop
  * - TODO PlainHttpServerTask
  * - TODO 8. Put on httpd
  * - TODO 9. Beta 1.0
@@ -67,7 +69,6 @@ package net.heteroclinic.lightjsd;
  * - TODO Test Facebook API
  * -- TODO Eclipse IDE
  * -- TODO Jar test
- * - TODO Publish .git
  * - TODO Beta1.0 
  * ********************************
  * TODO CONSIDERING 

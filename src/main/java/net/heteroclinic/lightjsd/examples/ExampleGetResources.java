@@ -1,5 +1,4 @@
 package net.heteroclinic.lightjsd.examples;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;

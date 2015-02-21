@@ -1,13 +1,31 @@
 package net.heteroclinic.lightjsd.servers;
 
+import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Task implements Runnable {
 	static protected AtomicLong count = new AtomicLong(0l);
-	protected long iD = -1l;
+	protected long id = -1l;
+	
+	public long getId() {
+		return id;
+	}
+
+	public boolean isOtherStop() {
+		return otherStop;
+	}
+
+	@SuppressWarnings("unused")
+	private void setOtherStop(boolean otherStop) {
+		this.otherStop = otherStop;
+	}
+
 	protected volatile boolean requestedStop = false;
 	protected volatile boolean otherStop = false;
+	
+	protected PrintWriter pw; 
+	protected boolean printDebug = false;
 
 	public boolean isRequestedStop() {
 		return requestedStop;
@@ -18,29 +36,44 @@ public class Task implements Runnable {
 	}
 
 	public Task() {
-		this.iD = count.incrementAndGet();
+		this.id = count.incrementAndGet();
+	}
+	
+	public Task(PrintWriter pw, boolean printDebug) {
+		this.id = count.incrementAndGet();
+		this.pw=pw;
+		this.printDebug = printDebug;
+	}
+	
+	public void log(String msg) {
+		if (printDebug && null != pw) {
+			pw.println(msg);
+		}
 	}
 
 	@Override
 	public void run() {
-		System.out.println("Task " + this.iD + " started.");
+		
+		log("Task " + this.id + " started.");
 		try {
 			while (!Thread.interrupted() && !requestedStop && !otherStop) {
 				try {
+					
+					// Do concrete job here
 					TimeUnit.MILLISECONDS.sleep(200);
 				} catch (InterruptedException e) {
-					// show or not?
+					otherStop = true;
 					throw e;
 				} catch (Exception e) {
-					// show or not?
-					//throw e;
 					otherStop = true;
+					throw e;
 				}
 			}
 		} catch (Exception e) {
 			// eat it
+			log(e.toString());
 		} finally {
-			System.out.println("Task " + this.iD + " ended.");
+			log("Task " + this.id + " ended.");
 		}
 	}
 

@@ -17,7 +17,7 @@ public class TestGetResources extends TestCase {
 	private static final String fileRes3 = "res3";
 	private static final String fileRes4 = "sub1/res2";
 	private static final String expectedContent1 = "res1";
-	private static final String expectedContent2 = "res2";
+	//private static final String expectedContent2 = "res2";
 	private static final String expectedContent3 = "res3";
 	private static final String expectedContent4 = "res2";
 	@Test
