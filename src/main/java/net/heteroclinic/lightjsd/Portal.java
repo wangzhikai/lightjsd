@@ -1,11 +1,5 @@
 package net.heteroclinic.lightjsd;
 
-import java.io.IOException;
-import java.net.URL;
-
-import net.heteroclinic.lightjsd.examples.ExampleGetResources;
-import net.heteroclinic.lightjsd.examples.ExampleGetResourcesContent;
-
 /*
 * Copyright (c) 2015, Zhikai Wang/www.heteroclinic.net. All rights reserved.
 * Science and technology promotion license applied (third party licenses automatically cascaded).
@@ -45,12 +39,18 @@ import net.heteroclinic.lightjsd.examples.ExampleGetResourcesContent;
  * -- `mvn clean package -DskipTests' OK
  * -- unfortunately, `mvn test' can not be used to detect jar resource. 
  * Note TO-DO 5 and TO-DO 6 are not the same thing.
- * - TODO 7. Get the content of resources
+ * - TO-DO 7. Get the content of resources
  * -- DONE ExampleGetResourcesContent in IDE
+ * 
  * -- DONE Test in jar
  * -- unit test
+ * - TODO Task
+ * - TODO PlainHttpServerTask
+ * - TODO 8. Put on httpd
+ * - TODO 9. Beta 1.0
  * 
  * 
+ * BACKLOG
  * - TODO Test in Eclipse with Run as Java application
  * 
  * -- TODO 1. Locate a file in Eclipse IDE
@@ -82,7 +82,7 @@ public class Portal {
 
 	public static void main(String[] args) {
 		System.out.println("Hello!");
-		new ExampleGetResourcesContent().readContentFromResource("res1");
+		//new ExampleGetResourcesContent().readContentFromResource("res1");
 		
 
 		
