@@ -44,12 +44,12 @@ package net.heteroclinic.lightjsd;
  * 
  * -- DONE Test in jar
  * -- unit test
- * - TODO 8. Task Class
- * -- TODO Unit test requestedStop
- * -- TODO Unit test exceptionStop/otherStop
- * - TODO PlainHttpServerTask
- * - TODO 8. Put on httpd
- * - TODO 9. Beta 1.0
+ * - TO-DO 8. Task Class
+ * -- TO-DO Unit test requestedStop
+ * -- TO-DO Unit test exceptionStop/otherStop
+ * - TODO 8. PlainHttpServerTask
+ * - TODO 9. Put on httpd
+ * - TODO 10. Beta 1.0
  * 
  * 
  * BACKLOG
