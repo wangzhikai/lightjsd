@@ -47,9 +47,12 @@ package net.heteroclinic.lightjsd;
  * - TO-DO 8. Task Class
  * -- TO-DO Unit test requestedStop
  * -- TO-DO Unit test exceptionStop/otherStop
- * - TODO 8. PlainHttpServerTask
- * - TODO 9. Put on httpd
- * - TODO 10. Beta 1.0
+ * - TODO 9. PlainHttpServerTask
+ * -- TODO 9.1 Fork an process 
+ * -- TODO 9.2 Send signal to terminate process in 9.1
+ * -- 
+ * - TODO 10. Put on httpd
+ * - TODO 11. Beta 1.0
  * 
  * 
  * BACKLOG
