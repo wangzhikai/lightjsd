@@ -4,12 +4,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import javax.net.ssl.SSLSession;
 
 public class ExampleURLReader {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, NoSuchAlgorithmException, KeyManagementException {
 
-		//http://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html
+		//Refer to http://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html
 		{
 			//Good
 	        URL oracle = new URL("http://www.oracle.com/");
@@ -35,8 +45,34 @@ public class ExampleURLReader {
 		
 		// TODO Case ignoring server certificates. You can configure an https server youself or comment/bypass this block.
 		{
-			
 			// TODO refer to http://stackoverflow.com/questions/13022717/java-and-https-url-connection-without-downloading-certificate
+	        // Create a trust manager that does not validate certificate chains
+			TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+				public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+					return null;
+				}
+
+				public void checkClientTrusted(X509Certificate[] certs,
+						String authType) {
+				}
+
+				public void checkServerTrusted(X509Certificate[] certs,
+						String authType) {
+				}
+			} };
+			
+	        // Install the all-trusting trust manager
+	        final SSLContext sc = SSLContext.getInstance("SSL");
+	        sc.init(null, trustAllCerts, new java.security.SecureRandom());
+	        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+	        // Create all-trusting host name verifier
+	        HostnameVerifier allHostsValid = new HostnameVerifier() {
+	            public boolean verify(String hostname, SSLSession session) {
+	                return true;
+	            }
+	        };
+			
+			
 			// "https://c2rose/g/?p=PizzaShop;a=summary" is a server of mine using a certificate not from a official CA root
 			// Refer to openjdkNotes.txt to get openjdk source; Use "openjdk8/jdk/src/" to attach source
 	        URL oracle = new URL("https://c2rose/g/?p=PizzaShop;a=summary");

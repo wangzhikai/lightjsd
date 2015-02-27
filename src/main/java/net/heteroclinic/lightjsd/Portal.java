@@ -41,14 +41,13 @@ package net.heteroclinic.lightjsd;
  * Note TO-DO 5 and TO-DO 6 are not the same thing.
  * - TO-DO 7. Get the content of resources
  * -- DONE ExampleGetResourcesContent in IDE
- * 
  * -- DONE Test in jar
  * -- unit test
  * - TO-DO 8. Task Class
  * -- TO-DO Unit test requestedStop
  * -- TO-DO Unit test exceptionStop/otherStop
  * - TODO 9. PlainHttpServerTask
- * -- TODO 9.0 Finish the ssl certificate experiment code in file 
+ * -- DONE 9.0 Finish the ssl certificate experiment code in file ExampleURLReader
  * -- TODO 9.1 Example PlainHttpServerTask
  * -- TODO 9.2 Unit test PlainHttpServerTask
  * - TODO 10. Load a JavaScript file in resource to PlainHttpServer context
