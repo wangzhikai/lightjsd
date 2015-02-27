@@ -48,10 +48,9 @@ package net.heteroclinic.lightjsd;
  * -- TO-DO Unit test requestedStop
  * -- TO-DO Unit test exceptionStop/otherStop
  * - TODO 9. PlainHttpServerTask
- * -- TODO 9.1 Fork an process 
- * -- TODO 9.2 Send signal to terminate process in 9.1
- * -- 
- * - TODO 10. Put on httpd
+ * -- TODO 9.1 Example PlainHttpServerTask
+ * -- TODO 9.2 Unit test PlainHttpServerTask
+ * - TODO 10. Load a JavaScript file in resource to PlainHttpServer context
  * - TODO 11. Beta 1.0
  * 
  * 
@@ -80,6 +79,8 @@ package net.heteroclinic.lightjsd;
  * -- TODO Ssl support
  * - TODO Gradle service test
  * -- TODO SSL REST test
+ * -- TOxDO 9.1 Fork an process 
+ * -- TOxDO 9.2 Send signal to terminate process in 9.1
  * -- TODO 88 unfortunately, `mvn test' can not be used to detect jar resource.
  */
 public class Portal {

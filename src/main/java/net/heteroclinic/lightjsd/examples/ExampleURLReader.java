@@ -11,6 +11,7 @@ public class ExampleURLReader {
 
 		//http://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html
 		{
+			//Good
 	        URL oracle = new URL("http://www.oracle.com/");
 	        BufferedReader in = new BufferedReader(
 	        new InputStreamReader(oracle.openStream()));
@@ -21,7 +22,25 @@ public class ExampleURLReader {
 	        in.close();
 		}
 		{
+			//Good
+	        URL oracle = new URL("https://www.oracle.com/");
+	        BufferedReader in = new BufferedReader(
+	        new InputStreamReader(oracle.openStream()));
+	
+	        String inputLine;
+	        while ((inputLine = in.readLine()) != null)
+	            System.out.println(inputLine);
+	        in.close();
+		}
+		
+		// TODO Case ignoring server certificates. You can configure an https server youself or comment/bypass this block.
+		{
+			
+			// TODO refer to http://stackoverflow.com/questions/13022717/java-and-https-url-connection-without-downloading-certificate
+			// "https://c2rose/g/?p=PizzaShop;a=summary" is a server of mine using a certificate not from a official CA root
+			// Refer to openjdkNotes.txt to get openjdk source; Use "openjdk8/jdk/src/" to attach source
 	        URL oracle = new URL("https://c2rose/g/?p=PizzaShop;a=summary");
+	        // The exception happens here
 	        BufferedReader in = new BufferedReader(
 	        new InputStreamReader(oracle.openStream()));
 	
@@ -65,6 +84,7 @@ public class ExampleURLReader {
 			... 19 more
 			*/
 		}
+		// TODO Case load our own keystore and install our own trust certificate. 
 
 	}
 
