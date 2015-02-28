@@ -48,7 +48,7 @@ package net.heteroclinic.lightjsd;
  * -- TO-DO Unit test exceptionStop/otherStop
  * - TODO 9. PlainHttpServerTask
  * -- DONE 9.0 Finish the ssl certificate experiment code in file ExampleURLReader
- * -- TODO 9.1 Example PlainHttpServerTask
+ * -- DONE 9.1 Example PlainHttpServerTask
  * -- TODO 9.2 Unit test PlainHttpServerTask
  * - TODO 10. Load a JavaScript file in resource to PlainHttpServer context
  * - TODO 11. Beta 1.0
@@ -81,6 +81,7 @@ package net.heteroclinic.lightjsd;
  * -- TODO SSL REST test
  * -- TOxDO 9.1 Fork an process 
  * -- TOxDO 9.2 Send signal to terminate process in 9.1
+ * -- TODO Read HttpsURLConnectionLocalCertificateChain.java, HttpsURLConnection, TrustManager etc
  * -- TODO 88 unfortunately, `mvn test' can not be used to detect jar resource.
  */
 public class Portal {

@@ -17,14 +17,10 @@ import java.security.cert.X509Certificate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import javax.net.ssl.SSLSession;
-import javax.security.cert.CertificateException;
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class ExampleURLReader {
 
@@ -495,6 +491,11 @@ Issuer: CN=Sonera Class1 CA, O=Sonera, C=FI
 		     
 		}
 		
+		//TOOD 
+		{
+			
+		}
+		
 		{
 			//Good
 	        URL oracle = new URL("https://www.oracle.com/");
@@ -505,6 +506,8 @@ Issuer: CN=Sonera Class1 CA, O=Sonera, C=FI
 	        while ((inputLine = in.readLine()) != null)
 	            System.out.println(inputLine);
 	        in.close();
+	        
+	        //HttpsURLConnection.getServerCertificates();
 		}
 		
 		// TODO Case ignoring server certificates. You can configure an https server youself or comment/bypass this block.

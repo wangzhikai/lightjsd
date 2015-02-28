@@ -72,35 +72,4 @@ public class PlainHttpServerTask extends Task {
 	}
 	
 	// TODO How to test shutdownhook?
-	
-	// TODO This main to a class in example folder
-	public static void main(String[] args) throws InterruptedException {
-		PrintWriter pw = new PrintWriter(System.out,true);
-		
-		List<Future<?>> fl = new ArrayList<Future<?>>();
-		ExecutorService exec = Executors.newCachedThreadPool();	
-		int numberOfThreads = 1;
-		List<Task> tl = new ArrayList<Task>();
-		for (int i =0; i<numberOfThreads; i++ ) {
-			Task t ;
-			fl.add(exec.submit(t = new PlainHttpServerTask(pw,true)));
-			tl.add(t);
-		}
-		
-		long sleepTime = 20000l;
-		TimeUnit.MILLISECONDS.sleep(sleepTime);
-		
-		for (Task t:tl) {
-			t.setRequestedStop(true);
-		}
-		exec.shutdown();
-		
-		long timeOutInMillis = 200l;
-		exec.awaitTermination(timeOutInMillis, TimeUnit.MILLISECONDS);
-		
-		for (Task t:tl) {
-			pw.printf("The task should not stop as requested : %s",t.isRequestedStop());
-		}		
-	}
-	
 }
