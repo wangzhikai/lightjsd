@@ -46,10 +46,10 @@ package net.heteroclinic.lightjsd;
  * - TO-DO 8. Task Class
  * -- TO-DO Unit test requestedStop
  * -- TO-DO Unit test exceptionStop/otherStop
- * - TODO 9. PlainHttpServerTask
+ * - TO-DO 9. PlainHttpServerTask
  * -- DONE 9.0 Finish the ssl certificate experiment code in file ExampleURLReader
  * -- DONE 9.1 Example PlainHttpServerTask
- * -- TODO 9.2 Unit test PlainHttpServerTask
+ * -- DONE 9.2 Unit test PlainHttpServerTask
  * - TODO 10. Load a JavaScript file in resource to PlainHttpServer context
  * - TODO 11. Beta 1.0
  * 

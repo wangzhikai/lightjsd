@@ -13,7 +13,6 @@ import net.heteroclinic.lightjsd.servers.Task;
 
 public class ExamplePlainHttpServerTask {
 
-	// TODO This main to a class in example folder
 	public static void main(String[] args) throws InterruptedException {
 		PrintWriter pw = new PrintWriter(System.out,true);
 		
@@ -27,7 +26,7 @@ public class ExamplePlainHttpServerTask {
 			tl.add(t);
 		}
 		
-		long sleepTime = 20000l;
+		long sleepTime = 3000l;
 		TimeUnit.MILLISECONDS.sleep(sleepTime);
 		
 		for (Task t:tl) {

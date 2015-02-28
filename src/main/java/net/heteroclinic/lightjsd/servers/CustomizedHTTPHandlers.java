@@ -11,7 +11,8 @@ public class CustomizedHTTPHandlers {
 	static class HelloWorldHandler implements HttpHandler {
 		public void handle(HttpExchange t) throws IOException {
 			StringBuilder sb = new StringBuilder("");
-			sb.append("<h1>Hello!</h1>");
+			String helloString = "<h1>Hello!</h1>";
+			sb.append(helloString);
 			String echo = sb.toString();
 			t.sendResponseHeaders(200, echo.length());
 			OutputStream os = t.getResponseBody();
