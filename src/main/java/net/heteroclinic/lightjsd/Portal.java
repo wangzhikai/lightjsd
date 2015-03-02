@@ -12,13 +12,6 @@ package net.heteroclinic.lightjsd;
  * This class is the entry point of Lightjsd. Also keeps the development log.
  * @author Zhikai Wang / www.heteroclinic.net
  * 
- * Notes:
- * 1. Resource files: for example, Java key store, .properties should be in relative path to the jar executing directory.
- * They should be in contained in the jar file, so they can be variable. Each time you deploy a new instance of 
- * a server, just change the keystore, property file.
- * 2. As up to date 20150120, any file in src/main/resources is automatically built to the root of the jar after 
- * `mvn package'. unzip can be used to show jar content.
- * 
  */
 /*
  * TODO Beta1.0 20140111
@@ -52,9 +45,18 @@ package net.heteroclinic.lightjsd;
  * -- DONE 9.2 Unit test PlainHttpServerTask
  * - DONE 10. Load a JavaScript file in resource to PlainHttpServer context
  * - TODO 11. Beta 1.0
+ * -- TODO 11.0 Change pom for jar name
  * -- TODO 11.1 Add shutdownhook in main
- * -- TODO 11.2 Add readme file
- * 
+ * -- TODO 11.1.1 Test run in IDE
+ * -- TODO 11.1.2 Test run the jar with shutdown hook
+ * -- TODO 11.2 Add/complete readme file
+ * -- TODO 11.3 Add Beta 1.0 release note
+ * -- TODO 11.3.1 Wrap httpServer, client use Java URL
+ * -- TODO 11.3.2 Maven project manager
+ * -- TODO 11.3.3 How to handle resources
+ * -- TODO 11.3.4 Experiment explicit thread termination
+ * -- TODO 11.3.5 Add unit tests as many as possible
+ * -- TODO 11.3.6  
  * 
  * BACKLOG
  * - TODO Test in Eclipse with Run as Java application
@@ -89,7 +91,7 @@ package net.heteroclinic.lightjsd;
 public class Portal {
 
 	public static void main(String[] args) {
-		System.out.println("Hello!");
+		//System.out.println("Hello!");
 		//new ExampleGetResourcesContent().readContentFromResource("res1");
 		
 
