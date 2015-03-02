@@ -1,13 +1,16 @@
 package net.heteroclinic.lightjsd;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+
 /*
-* Copyright (c) 2015, Zhikai Wang/www.heteroclinic.net. All rights reserved.
-* Science and technology promotion license applied (third party licenses automatically cascaded).
-* This is a good-will software. Users' liability always.
-* The liability of Zhikai Wang/ www.heteroclinic.net to maximum is to remove or modify matter(s) in dispute.
-* This is a good-will software. Given you keep this header, you can use this software at good will. The inverse
-* of good-will including illegal activities that are subject to jurisdiction applicable.
-*/
+ * All third party licenses and rights are automatically cascaded. The responsibility of the author(s), Zhikai Wang/www.heteroclinic.net, to the maximum is to remove or modify matters in dispute. You can utilize this project at good-will. The inverse of good-will includes illegal activities that are subject to jurisdiction applicable. Zhikai Wang/www.heteroclinic.net (c) 2015.
+ */
 /**
  * This class is the entry point of Lightjsd. Also keeps the development log.
  * @author Zhikai Wang / www.heteroclinic.net
@@ -56,7 +59,7 @@ package net.heteroclinic.lightjsd;
  * -- TODO 11.3.3 How to handle resources
  * -- TODO 11.3.4 Experiment explicit thread termination
  * -- TODO 11.3.5 Add unit tests as many as possible
- * -- TODO 11.3.6  
+ * -- TODO 11.3.6 Try to documents 3.5 and 3.6 slow down the process of writing code. But some time later, they make it easy to pick up the project again after long in-activity. 
  * 
  * BACKLOG
  * - TODO Test in Eclipse with Run as Java application
@@ -91,11 +94,36 @@ package net.heteroclinic.lightjsd;
 public class Portal {
 
 	public static void main(String[] args) {
-		//System.out.println("Hello!");
-		//new ExampleGetResourcesContent().readContentFromResource("res1");
-		
+		List<Future<?>> fl = new ArrayList<Future<?>>();
+		ExecutorService exec = Executors.newCachedThreadPool();
 
+		//fl.add(exec.submit(new PlainHttpServerTask()));
+		//fl.add(exec.submit(new SSLHttpServerTask()));
 		
+	    //Runtime.getRuntime().addShutdownHook( new HybridHttpServerShutdownHook());
+	    
+		// The two ways to stop a server.
+		// 1. Use console, in IDE e.g. Eclipse, it shields signals like ctrl-c etc. 
+		// 2. Use shutdown hook, as a system service run without console, you can "service lightjsd start/stop/restart"
+		System.out.println("Type stop or use ctrl-c to terminate the service. ctrl-c not work in Eclipse");
+		String condition = "";
+		while (!condition.equalsIgnoreCase("stop")) {
+			try {
+				// create the Scanner
+				Scanner scanner = new Scanner(System.in);
+
+				// read input
+				condition = scanner.nextLine();
+			} catch (Throwable t) {
+				t.printStackTrace();
+				condition = "stop";
+			}
+		}
+
+		exec.shutdown();
+		for (Future<?> f: fl)
+			f.cancel(true);
+		//System.out.println("If shutdown hook is called this line won't be called.");
 	}
 
 }
