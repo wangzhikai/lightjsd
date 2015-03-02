@@ -33,6 +33,7 @@ public class PlainHttpServerTask extends Task {
 	        
 			server = HttpServer.create(new InetSocketAddress(portNumber), backLog);
 			server.createContext("/", new CustomizedHTTPHandlers.HelloWorldHandler());
+			server.createContext("/jshello", new CustomizedHTTPHandlers.JSHelloWorldHandler());
 	        server.setExecutor(null);
 	        server.start();
 	        

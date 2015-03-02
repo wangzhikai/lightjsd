@@ -26,7 +26,7 @@ public class ExamplePlainHttpServerTask {
 			tl.add(t);
 		}
 		
-		long sleepTime = 3000l;
+		long sleepTime = 30000l;
 		TimeUnit.MILLISECONDS.sleep(sleepTime);
 		
 		for (Task t:tl) {

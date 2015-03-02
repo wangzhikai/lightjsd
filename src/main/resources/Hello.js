@@ -1,4 +1,4 @@
 <script>
-var foo = 'Hello!';
+var foo = 'Javascript hello!';
 document.write(foo);
 </script>
