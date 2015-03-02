@@ -50,7 +50,7 @@ package net.heteroclinic.lightjsd;
  * -- DONE 9.0 Finish the ssl certificate experiment code in file ExampleURLReader
  * -- DONE 9.1 Example PlainHttpServerTask
  * -- DONE 9.2 Unit test PlainHttpServerTask
- * - TODO 10. Load a JavaScript file in resource to PlainHttpServer context
+ * - DONE 10. Load a JavaScript file in resource to PlainHttpServer context
  * - TODO 11. Beta 1.0
  * -- TODO 11.1 Add shutdownhook in main
  * -- TODO 11.2 Add readme file

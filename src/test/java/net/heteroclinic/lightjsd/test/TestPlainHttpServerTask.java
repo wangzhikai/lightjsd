@@ -42,23 +42,41 @@ public class TestPlainHttpServerTask {
 		long sleepTime = 200l;
 		TimeUnit.MILLISECONDS.sleep(sleepTime);
 		
-        URL url = new URL("http://localhost:"+serverPort+"/");
-        BufferedReader in = new BufferedReader(
-        new InputStreamReader(url.openStream()));
-
-        int lineCount = 0;
-        //defined in CustomizedHTTPHandler
-        String keyString = "Hello";
-        boolean stringFound = false;
-        String inputLine;
-        while ((inputLine = in.readLine()) != null) {
-        	lineCount++;
-        	if (inputLine.toLowerCase().contains(keyString.toLowerCase())) {
-        		stringFound = true;
-        	}
-            //System.out.println(inputLine);
-        }
-        in.close();
+        boolean nonJSStringFound = false;
+        String nonJSKeyString = "Hello";
+        boolean jsStringFound = false;
+        String JSKeyString = "Javascript";
+		
+		{
+			//defined in CustomizedHTTPHandler
+	        URL url = new URL("http://localhost:"+serverPort+"/");
+	        BufferedReader in = new BufferedReader(
+	        new InputStreamReader(url.openStream()));
+	        String NonJSkeyString = "Hello";
+	        //boolean stringFound = false;
+	        String inputLine;
+	        while ((inputLine = in.readLine()) != null) {
+	        	if (inputLine.toLowerCase().contains(NonJSkeyString.toLowerCase())) {
+	        		nonJSStringFound = true;
+	        	}
+	            //System.out.println(inputLine);
+	        }
+	        in.close();
+		}
+		{
+			//defined in CustomizedHTTPHandler
+	        URL url = new URL("http://localhost:"+serverPort+"/jshello");
+	        BufferedReader in = new BufferedReader(
+	        new InputStreamReader(url.openStream()));
+	        String inputLine;
+	        while ((inputLine = in.readLine()) != null) {
+	        	if (inputLine.toLowerCase().contains(JSKeyString.toLowerCase())) {
+	        		jsStringFound = true;
+	        	}
+	            //System.out.println(inputLine);
+	        }
+	        in.close();
+		}
 		
 		for (Task t:tl) {
 			t.setRequestedStop(true);
@@ -71,11 +89,9 @@ public class TestPlainHttpServerTask {
 		for (Task t:tl) {
 			pw.printf("The task should stop as requested : %s",t.isRequestedStop());
 		}			
-		
-		//assert line count > 0
-		assertTrue("No http text found",lineCount>0 );
-		//assert hello found
-		assertTrue(keyString+ " not found",stringFound );
+	
+		assertTrue(nonJSKeyString+ " not found",nonJSStringFound );
+		assertTrue(JSKeyString+ " not found",jsStringFound );
 	}
 	
 }
