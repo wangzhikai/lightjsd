@@ -5,6 +5,7 @@ package net.heteroclinic.lightjsd;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
@@ -18,10 +19,9 @@ import net.heteroclinic.lightjsd.servers.Task;
 /**
  * This class is the entry point of Lightjsd. Also keeps the development log.
  * @author Zhikai Wang / www.heteroclinic.net
- * 
  */
 /*
- * TODO Beta1.0 20140111
+ * TODO Beta1.0 20150111
  * - TO-DO 1. Start a new git repo for Lightjsd/20140111
  * - TO-DO 2. Change Maven pom/20140111
  * - TO-DO 3. test public URL getResource(String name) in Eclipse IDE
@@ -53,9 +53,10 @@ import net.heteroclinic.lightjsd.servers.Task;
  * - DONE 10. Load a JavaScript file in resource to PlainHttpServer context
  * - TODO 11. Beta 1.0
  * -- DONE 11.0 Change pom for jar name
- * -- TODO 11.1 Add shutdownhook in Portal.main
- * -- TODO 11.1.1 Test run in IDE
- * -- TODO 11.1.2 Test run the jar with shutdown hook
+ * -- DONE 11.1 Add shutdownhook in Portal.main
+ * -- DONE 11.1.1 Test run in IDE
+ * -- DONE 11.1.2 Test run the jar with shutdown hook ctrl-c
+ * -- DONE 11.1.3 Test run the jar with shutdown hook by sending signal with 'kill pid', Note 'kill -9 pid' will not call shutdown hook. 
  * -- TODO 11.2 Add/complete readme file
  * -- TODO 11.3 Add Beta 1.0 release note
  * -- TODO 11.3.1 Wrap httpServer, client use Java URL
@@ -96,25 +97,57 @@ import net.heteroclinic.lightjsd.servers.Task;
  * -- TODO 88 unfortunately, `mvn test' can not be used to detect jar resource.
  */
 public class Portal {
+	static class GeneralShutdownHook extends Thread {// must be static
+		protected PrintWriter pw;
+		protected List<Task> tl; 
+		protected ExecutorService exec;
+
+		
+		public GeneralShutdownHook(List<Task> tl, ExecutorService exec,PrintWriter pw) {
+			this.pw = pw;
+			this.tl = tl;
+			this.exec = exec;
+		}
+
+		@Override
+		public void run() {
+			exec.shutdown();		
+			for (Task t : tl) {
+				t.setRequestedStop(true);
+			}
+			long timeOutInMillis = 200l;
+			// Protocol join similar exit.
+			try {
+				exec.awaitTermination(timeOutInMillis, TimeUnit.MILLISECONDS);
+			} catch (InterruptedException e) {
+			
+			}
+			
+//			for (Task t:tl) {
+//				pw.printf("The task should stop as requested : %s\n",t.isRequestedStop());
+//			}
+			tl.clear();
+			pw.println("End with shutdown hook.");
+		}
+	}
 
 	public static void main(String[] args) throws InterruptedException {
+		PrintWriter pw = new PrintWriter(System.out,true);
+
 		List<Future<?>> fl = new ArrayList<Future<?>>();
 		ExecutorService exec = Executors.newCachedThreadPool();
-
-		//fl.add(exec.submit(new PlainHttpServerTask()));
-		//fl.add(exec.submit(new SSLHttpServerTask()));
+		List<Task> tl = new ArrayList<Task>();
+		tl = Collections.synchronizedList(tl);
 		
-	    //Runtime.getRuntime().addShutdownHook( new HybridHttpServerShutdownHook());
+	    Runtime.getRuntime().addShutdownHook( new GeneralShutdownHook(tl,exec,pw));
 	    
 		// The two ways to stop a server.
 		// 1. Use console, in IDE e.g. Eclipse, it shields signals like ctrl-c etc. 
 		// 2. Use shutdown hook, as a system service run without console, you can "service lightjsd start/stop/restart"
 		System.out.println("Type stop or use ctrl-c to terminate the service. ctrl-c not work in Eclipse");
 		
-		PrintWriter pw = new PrintWriter(System.out,true);
-		
 		int numberOfThreads = 1;
-		List<Task> tl = new ArrayList<Task>();
+		
 		for (int i =0; i<numberOfThreads; i++ ) {
 			Task t ;
 			fl.add(exec.submit(t = new PlainHttpServerTask(pw,true)));
@@ -143,12 +176,11 @@ public class Portal {
 		// Protocol join similar exit.
 		exec.awaitTermination(timeOutInMillis, TimeUnit.MILLISECONDS);
 
-//		for (Future<?> f: fl)
-//			f.cancel(true);
 		for (Task t:tl) {
 			pw.printf("The task should stop as requested : %s\n",t.isRequestedStop());
 		}
 		//pw.println("If shutdown hook is called this line won't be called.");
+		pw.println("End with inputing stop in main.");
 
 	}
 
