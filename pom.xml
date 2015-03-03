@@ -8,7 +8,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.heteroclinic.lightjsd</groupId>
 	<artifactId>lightjsd</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-beta</version>
 	<name>LightJSD</name>
 	<description>Light-weight Javascript support kit with Sun httpd </description>
 
@@ -16,7 +16,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<build>
+		<!-- 
 		<finalName>lightjsd</finalName>
+		 -->
 		<plugins>
 
 			<plugin>

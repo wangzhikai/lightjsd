@@ -3,12 +3,17 @@
  */
 package net.heteroclinic.lightjsd;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+
+import net.heteroclinic.lightjsd.servers.PlainHttpServerTask;
+import net.heteroclinic.lightjsd.servers.Task;
 
 /**
  * This class is the entry point of Lightjsd. Also keeps the development log.
@@ -47,8 +52,8 @@ import java.util.concurrent.Future;
  * -- DONE 9.2 Unit test PlainHttpServerTask
  * - DONE 10. Load a JavaScript file in resource to PlainHttpServer context
  * - TODO 11. Beta 1.0
- * -- TODO 11.0 Change pom for jar name
- * -- TODO 11.1 Add shutdownhook in main
+ * -- DONE 11.0 Change pom for jar name
+ * -- TODO 11.1 Add shutdownhook in Portal.main
  * -- TODO 11.1.1 Test run in IDE
  * -- TODO 11.1.2 Test run the jar with shutdown hook
  * -- TODO 11.2 Add/complete readme file
@@ -92,7 +97,7 @@ import java.util.concurrent.Future;
  */
 public class Portal {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		List<Future<?>> fl = new ArrayList<Future<?>>();
 		ExecutorService exec = Executors.newCachedThreadPool();
 
@@ -105,6 +110,19 @@ public class Portal {
 		// 1. Use console, in IDE e.g. Eclipse, it shields signals like ctrl-c etc. 
 		// 2. Use shutdown hook, as a system service run without console, you can "service lightjsd start/stop/restart"
 		System.out.println("Type stop or use ctrl-c to terminate the service. ctrl-c not work in Eclipse");
+		
+		PrintWriter pw = new PrintWriter(System.out,true);
+		
+		int numberOfThreads = 1;
+		List<Task> tl = new ArrayList<Task>();
+		for (int i =0; i<numberOfThreads; i++ ) {
+			Task t ;
+			fl.add(exec.submit(t = new PlainHttpServerTask(pw,true)));
+			tl.add(t);
+		}
+		// TODO Need a cyclic barrier etc to indicate the server completes loading.
+		pw.println("Server started!");
+		
 		String condition = "";
 		Scanner scanner = new Scanner(System.in);
 		while (!condition.equalsIgnoreCase("stop")) {
@@ -117,10 +135,21 @@ public class Portal {
 		}
 		scanner.close();
 
-		exec.shutdown();
-		for (Future<?> f: fl)
-			f.cancel(true);
-		//System.out.println("If shutdown hook is called this line won't be called.");
+		exec.shutdown();		
+		for (Task t : tl) {
+			t.setRequestedStop(true);
+		}
+		long timeOutInMillis = 200l;
+		// Protocol join similar exit.
+		exec.awaitTermination(timeOutInMillis, TimeUnit.MILLISECONDS);
+
+//		for (Future<?> f: fl)
+//			f.cancel(true);
+		for (Task t:tl) {
+			pw.printf("The task should stop as requested : %s\n",t.isRequestedStop());
+		}
+		//pw.println("If shutdown hook is called this line won't be called.");
+
 	}
 
 }
