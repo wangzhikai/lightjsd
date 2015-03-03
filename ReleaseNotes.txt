@@ -1,0 +1,8 @@
+lightjsd Beta 1.0 Feb 28, 2014
+
+In this realease, we experimented wraping Sun/Oracle HttpServer, using Java URL class to do the REST end test. We also experimented how to handle resource management. We used Maven as the project management tool to resolve software library/jar dependencies. We also experimented how to terminate threads or processes in execution with protocol. We added as many as unit tests as possible. We tried to documents as best as possible. Although writing the tests and documenting slow down the process, but without them it will be very difficult to pick up the project again sometime later. The tests provide a base to fix issues related to third-party/denpendency library updates.
+
+In this release, we implemented the basic plain HttpServer. We will continue working on https support and part of the basic experiments has been done. The objective is to use this project as a mesage dispatcher in an applicable scenario.
+
+Zhikai Wang/www.heteroclinic.net
+

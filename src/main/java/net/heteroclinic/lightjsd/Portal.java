@@ -21,7 +21,7 @@ import net.heteroclinic.lightjsd.servers.Task;
  * @author Zhikai Wang / www.heteroclinic.net
  */
 /*
- * TODO Beta1.0 20150111
+ * TODO Beta1.0 20150111~20150228
  * - TO-DO 1. Start a new git repo for Lightjsd/20140111
  * - TO-DO 2. Change Maven pom/20140111
  * - TO-DO 3. test public URL getResource(String name) in Eclipse IDE
@@ -51,20 +51,20 @@ import net.heteroclinic.lightjsd.servers.Task;
  * -- DONE 9.1 Example PlainHttpServerTask
  * -- DONE 9.2 Unit test PlainHttpServerTask
  * - DONE 10. Load a JavaScript file in resource to PlainHttpServer context
- * - TODO 11. Beta 1.0
+ * - DONE 11. Beta 1.0
  * -- DONE 11.0 Change pom for jar name
  * -- DONE 11.1 Add shutdownhook in Portal.main
  * -- DONE 11.1.1 Test run in IDE
  * -- DONE 11.1.2 Test run the jar with shutdown hook ctrl-c
  * -- DONE 11.1.3 Test run the jar with shutdown hook by sending signal with 'kill pid', Note 'kill -9 pid' will not call shutdown hook. 
- * -- TODO 11.2 Add/complete readme file
- * -- TODO 11.3 Add Beta 1.0 release note
- * -- TODO 11.3.1 Wrap httpServer, client use Java URL
- * -- TODO 11.3.2 Maven project manager
- * -- TODO 11.3.3 How to handle resources
- * -- TODO 11.3.4 Experiment explicit thread termination
- * -- TODO 11.3.5 Add unit tests as many as possible
- * -- TODO 11.3.6 Try to documents 3.5 and 3.6 slow down the process of writing code. But some time later, they make it easy to pick up the project again after long in-activity. 
+ * -- DONE 11.2 Add/complete readme file
+ * -- DONE 11.3 Add Beta 1.0 release note
+ * -- DONE 11.3.1 Wrap httpServer, client use Java URL
+ * -- DONE 11.3.2 Maven project management
+ * -- DONE 11.3.3 How to handle resources
+ * -- DONE 11.3.4 Experiment explicit thread termination
+ * -- DONE 11.3.5 Add unit tests as many as possible
+ * -- DONE 11.3.6 Try to documents 3.5 and 3.6 slow down the process of writing code. But some time later, they make it easy to pick up the project again after long in-activity. 
  * 
  * BACKLOG
  * - TODO Test in Eclipse with Run as Java application
