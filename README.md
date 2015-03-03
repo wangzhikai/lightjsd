@@ -1,5 +1,4 @@
 # lightjsd
-<<<<<<< HEAD
 'lightjsd' is a light-weight Java Web server. 
 
 Introduction
@@ -14,6 +13,3 @@ QuickStart
 ----
 After you get the source repository, you can use an IDE to open the Maven project. The entry point of the server is in Portal.java. You can study the project by reviewing examples in package net.heteroclinic.lightjsd.examples. Or study the test cases in folder src/test/java. To compile the binary, at the source root directory, execute 'mvn clean package'. To execute/start the binary, run 'java -jar target/lightjsd-*.jar'. Use ctrl-c or 'kill pid' to end the server in protocol (calling shutdown-hook.
 
-=======
-test
->>>>>>> 336dfeee503c12f410eeee9cee07ff478275119c
