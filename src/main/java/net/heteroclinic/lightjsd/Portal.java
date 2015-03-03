@@ -1,3 +1,6 @@
+/*
+ * Zhikai Wang/www.heteroclinic.net (c) 2015. All third party licenses and rights are automatically cascaded. The responsibility of the author(s), Zhikai Wang/www.heteroclinic.net, to the maximum is to remove or modify matters in dispute. You can utilize this project at good-will. The inverse of good-will includes illegal activities that are subject to jurisdiction applicable. 
+ */
 package net.heteroclinic.lightjsd;
 
 import java.util.ArrayList;
@@ -7,10 +10,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-
-/*
- * All third party licenses and rights are automatically cascaded. The responsibility of the author(s), Zhikai Wang/www.heteroclinic.net, to the maximum is to remove or modify matters in dispute. You can utilize this project at good-will. The inverse of good-will includes illegal activities that are subject to jurisdiction applicable. Zhikai Wang/www.heteroclinic.net (c) 2015.
- */
 /**
  * This class is the entry point of Lightjsd. Also keeps the development log.
  * @author Zhikai Wang / www.heteroclinic.net
@@ -107,18 +106,16 @@ public class Portal {
 		// 2. Use shutdown hook, as a system service run without console, you can "service lightjsd start/stop/restart"
 		System.out.println("Type stop or use ctrl-c to terminate the service. ctrl-c not work in Eclipse");
 		String condition = "";
+		Scanner scanner = new Scanner(System.in);
 		while (!condition.equalsIgnoreCase("stop")) {
 			try {
-				// create the Scanner
-				Scanner scanner = new Scanner(System.in);
-
-				// read input
 				condition = scanner.nextLine();
 			} catch (Throwable t) {
 				t.printStackTrace();
 				condition = "stop";
-			}
+			} 
 		}
+		scanner.close();
 
 		exec.shutdown();
 		for (Future<?> f: fl)
